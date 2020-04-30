@@ -3,16 +3,14 @@ type: docker
 name: default
    
 workspace:
-  path: /home/frappe-user
-
-clone:
-  disable: true
+  path: /home/frappe-user/workspace
 
 steps:
 - name: Setup
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
   commands:
+    - cd ~/workspace
     - ls; pwd; whoami
     - git mv * ~/erpnext
     - ls ~/erpnext
