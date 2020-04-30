@@ -25,13 +25,14 @@ steps:
     - bench init --skip-assets --frappe-branch $DRONE_BRANCH --python $(which python3) frappe-bench
     - mkdir ~/frappe-bench/sites/test_site
     - cp ~/erpnext/.travis/site_config.json ~/frappe-bench/sites/test_site/
-    - cd frappe-bench;ls
+    - cd frappe-bench;
     - sed -i 's/watch:/# watch:/g' Procfile
     - sed -i 's/schedule:/# schedule:/g' Procfile
     - sed -i 's/socketio:/# socketio:/g' Procfile
     - sed -i 's/redis_socketio:/# redis_socketio:/g' Procfile
     - bench get-app erpnext ~/erpnext
-    - echo "here"
+    - bench start &
+    - bench --site test_site reinstall --yes
 
 services:
   - name: database
