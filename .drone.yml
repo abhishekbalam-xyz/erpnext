@@ -10,7 +10,7 @@ steps:
   image: abhishekbalam/erpnext-testing
   volumes:
     - name: frappe-repo
-      path: /home/frappe-user/frappe-repo
+      path: /home/frappe-user/frappe
   commands:
     - cd ~
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
@@ -27,7 +27,7 @@ steps:
   image: abhishekbalam/erpnext-testing
   volumes:
     - name: frappe-repo
-      path: /home/frappe-user/frappe-repo
+      path: /home/frappe-user/frappe
   commands:
     - bench init --skip-assets  --frappe-path ~/frappe-repo --python $(which python3) frappe-bench
     - mkdir ~/frappe-bench/sites/test_site
