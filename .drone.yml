@@ -13,7 +13,7 @@ steps:
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
   commands:
-    - ls
+    - ls; pwd; whoami
     - git mv * ~/erpnext
     - ls ~/erpnext
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
