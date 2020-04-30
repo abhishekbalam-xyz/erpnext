@@ -3,15 +3,17 @@ type: docker
 name: default
    
 workspace:
-  path: /home/frappe-user/workspace
+  path: /home/frappe-user/erpnext
 
 steps:
 - name: Setup
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
+  - volumes:
+    - name: frappe-repo
+    - path: ~/frappe
   commands:
-    - cd ~; mv workspace erpnext;
-    - mkdir workspace; mv erpnext workspace/erpnext; cd ~/workspace;
+    - cd ~
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
     - while ! mysqladmin ping -hdatabase --silent; do sleep 1; done
     - mysql -u root -e "SET GLOBAL character_set_server = 'utf8mb4'"
@@ -25,6 +27,9 @@ steps:
 - name: Build
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
+  - volumes:
+    - name: frappe-repo
+    - path: ~/frappe
   commands:
     - bench init --skip-assets  --frappe-path ~/frappe --python $(which python3) frappe-bench
     - mkdir ~/frappe-bench/sites/test_site
@@ -43,3 +48,6 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
+volumes:
+  - name: frappe-repo
+  - temp: {}
