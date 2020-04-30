@@ -10,8 +10,8 @@ steps:
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
   commands:
-    - mv {./*,./.*} erpnext/
-    - ls erpnext/
+    - cd ~; mv workspace erpnext;
+    - mkdir workspace; mv erpnext workspace/erpnext; cd ~/workspace;
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
     - while ! mysqladmin ping -hdatabase --silent; do sleep 1; done
     - mysql -u root -e "SET GLOBAL character_set_server = 'utf8mb4'"
