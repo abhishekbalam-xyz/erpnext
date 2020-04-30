@@ -9,6 +9,7 @@ steps:
 - name: Setup
   image: abhishekbalam/erpnext-testing
   commands:
+    - ls -a
     - while ! mysqladmin ping -hdatabase --silent; do sleep 1; done
     - mysql -u root -h database -e "SET GLOBAL character_set_server = 'utf8mb4'"
     - mysql -u root -h database -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci'"
