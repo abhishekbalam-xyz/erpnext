@@ -23,6 +23,7 @@ steps:
   image: abhishekbalam/erpnext-testing
   commands:
     - cd ~;
+    - sudo service redis-server start;
     - sudo -H pip3 install --user honcho
     - bench init --skip-assets --frappe-branch $DRONE_BRANCH --python $(which python3) frappe-bench
     - mkdir ~/frappe-bench/sites/test_site
