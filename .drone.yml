@@ -32,6 +32,7 @@ steps:
     - sed -i 's/redis_socketio:/# redis_socketio:/g' Procfile
     - bench get-app erpnext ~/erpnext
     - bench start &
+    - pip3 install -user honcho
     - bench --site test_site reinstall --yes
 
 
