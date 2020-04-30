@@ -10,7 +10,7 @@ steps:
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
   commands:
-    - mv {*,.*} erpnext/
+    - mv {./*,./.*} erpnext/
     - ls erpnext/
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
     - while ! mysqladmin ping -hdatabase --silent; do sleep 1; done
