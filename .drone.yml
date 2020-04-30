@@ -10,7 +10,6 @@ steps:
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
   commands:
-    - shopt -s dotglob nullglob
     - mv {*,.*} erpnext/
     - ls erpnext/
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
