@@ -12,7 +12,7 @@ steps:
   commands:
     - cd ~/workspace
     - ls; pwd; whoami
-    - git mv * ~/erpnext
+    - sudo git mv * ~/erpnext
     - ls ~/erpnext
     - git clone https://github.com/frappe/frappe --branch $DRONE_BRANCH --depth 1
     - while ! mysqladmin ping -hdatabase --silent; do sleep 1; done
