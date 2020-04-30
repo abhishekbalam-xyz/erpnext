@@ -9,7 +9,7 @@ steps:
 - name: Setup
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
-  - volumes:
+  volumes:
     - name: frappe-repo
     - path: ~/frappe
   commands:
@@ -27,7 +27,7 @@ steps:
 - name: Build
   image: abhishekbalam/erpnext-testing
   pull: if-not-exists
-  - volumes:
+  volumes:
     - name: frappe-repo
     - path: ~/frappe
   commands:
