@@ -28,16 +28,15 @@ steps:
     - mkdir ~/frappe-bench/sites/test_site
     - cp ~/erpnext/.travis/site_config.json ~/frappe-bench/sites/test_site/
     - cd frappe-bench;
-    - sed -i 's/watch:/# watch:/g' Procfile
-    - sed -i 's/schedule:/# schedule:/g' Procfile
-    - sed -i 's/socketio:/# socketio:/g' Procfile
-    - sed -i 's/redis_socketio:/# redis_socketio:/g' Procfile
+    - sed -i '/^watch:/ d' Procfile
+    - sed -i '/^schedule:/ d' Procfile
+    - sed -i '/socketio/ d' Procfile
     - cat Procfile
-    # - bench setup socketio
-    # - bench setup requirements
-    # - bench get-app erpnext ~/erpnext
-    # - bench start &
-    # - bench --site test_site reinstall --yes
+    - bench setup socketio
+    - bench setup requirements
+    - bench get-app erpnext ~/erpnext
+    - bench start &
+    - bench --site test_site reinstall --yes
 
 
 services:
